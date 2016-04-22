@@ -16,14 +16,14 @@ do
 esac
 done
 
-mkdir -p $directory;
+mkdir -p $directory
 
-baseurl=$(echo $url | egrep -o "https?://[a-z.]+")
+baseurl=$(echo $url | egrep -o "https?://.+")
 
 curl -s $url | egrep -o "<img src=[^>]*>" | sed 's/<img src=\"\([^"]*\).*/\1/g' > /tmp/$$.list
 
 
-sed -i "s|^/|$baseurl/|" /tmp/$$.list
+sed -i "s|^|$baseurl/|" /tmp/$$.list
 
 cd $directory;
 
